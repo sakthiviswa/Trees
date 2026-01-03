@@ -11,7 +11,6 @@
  */
 class Solution {
 public:
-
     bool recursion(TreeNode* p,TreeNode* q){
 
         if(!p && !q){
@@ -25,16 +24,14 @@ public:
         if(p->val != q->val){
             return false;
         }
-        
 
-      bool l =  recursion(p->left,q->left);
-      bool r =  recursion(p->right,q->right);
+        bool l = recursion(p->left,q->left);
+        bool r = recursion(p->right,q->right);
 
         return l && r;
     }
     bool isSameTree(TreeNode* p, TreeNode* q) {
-
         return recursion(p,q);
-        
+
     }
 };
