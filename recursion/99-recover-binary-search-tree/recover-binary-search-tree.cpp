@@ -11,8 +11,6 @@
  */
 class Solution {
 public:
-
-
     TreeNode* first = nullptr ;
     TreeNode* second = nullptr;
 
@@ -37,20 +35,13 @@ public:
 
         recursion(root->right);
 
-
-
     }
 
     void recoverTree(TreeNode* root) {
 
         recursion(root);
 
-        if(first != nullptr && second != nullptr){
-
-          int  temp = first->val;
-           first->val = second->val;
-           second->val = temp;
-        }
+       swap(first->val,second->val);
 
         
     }
