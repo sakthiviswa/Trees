@@ -11,10 +11,10 @@
  */
 class Solution {
 public:
-
     vector<TreeNode*> forest;
-    unordered_set<int> values;
-    void recursion(TreeNode*  &root){
+    unordered_set<int> del;
+    
+    void recursion(TreeNode* &root){
 
         if(!root){
             return ;
@@ -23,10 +23,9 @@ public:
         recursion(root->left);
         recursion(root->right);
 
-        if(values.count(root->val)){
+        if(del.count(root->val)){
 
-            if(root->left)
-            {
+            if(root->left){
                 forest.push_back(root->left);
             }
 
@@ -36,27 +35,26 @@ public:
 
             root = nullptr;
         }
-       
-
-
-
-
     }
+
     vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
 
-        values = unordered_set<int>(to_delete.begin(),to_delete.end());
+       
 
+        del = unordered_set<int>(to_delete.begin(),to_delete.end());
 
+        recursion(root);
 
-          recursion(root);
-
-          if(root){
+        if(root){
             forest.push_back(root);
-          }
+        }
 
-          sort(forest.begin(),forest.end());
+        sort(forest.begin(),forest.end());
 
-          return forest;
+
+        return forest;
+
+        
         
     }
 };
