@@ -11,11 +11,11 @@ public:
             return false;
         }
 
-        if(grid[row][col] == 1){
+        if(grid[row][col] != 0){
             return true;
         }
 
-        grid[row][col] = 1;
+        grid[row][col] = 2;
 
         bool up = dfs(grid,row+1,col);
         bool down =  dfs(grid,row-1,col);
