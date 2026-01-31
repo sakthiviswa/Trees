@@ -4,7 +4,7 @@ public:
 
         int n = letters.size();
 
-        char res = ' ';
+        char res = letters[0];
 
         for(char c:letters){
 
@@ -14,9 +14,7 @@ public:
             }
         }
 
-        if(res == ' '){
-            res = letters[0];
-        }
+       
 
         return res;
         
