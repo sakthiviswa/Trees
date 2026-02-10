@@ -1,27 +1,20 @@
 class Solution {
 public:
     int longestBalanced(vector<int>& nums) {
-        int n = (int)nums.size();
-
-        int i = 0, ans = 0, j, sum;
-        for(i; i < n; i ++){
-            for(j = i - 1; j >= 0; j --){
-                if((nums[i] ^ nums[j]) == (1<<30)){
-                    nums[j] ^= (1<<30);
-                }
-            }
-            nums[i] ^= (1<<30);
-            sum = 0;
-            for(int j = i; j >= 0; j --){
-                if(nums[j]&(1<<30)){
-                    if(nums[j]&1) sum += 1;
-                    else sum -= 1;
-                }
-                if(sum == 0){
-                    ans = max(ans, i - j + 1);
+        int res = 0;
+        unordered_set<int> odd, even;
+        for (int i = 0; i < nums.size(); i++){
+            odd.clear();
+            even.clear();
+            for (int j = i; j < nums.size(); j++){
+                int num = nums[j];
+                if ((num & 1) == 1) odd.insert(num);
+                else even.insert(num);
+                if (odd.size() == even.size()){
+                    res = max(res, j - i + 1);
                 }
             }
         }
-        return ans;
+        return res;
     }
 };
