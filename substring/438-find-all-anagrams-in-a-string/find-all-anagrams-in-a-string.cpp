@@ -5,32 +5,32 @@ public:
 
         int k = p.length();
 
-        vector<int>res;
+        vector<int> res;
 
-        unordered_map<char,int>mp;
+        unordered_map<char, int> mp;
 
-        for(int i=0;i<k;i++){
+        for (int i = 0; i < k; i++) {
             mp[p[i]]++;
         }
 
         int left = 0;
-        for(int right = 0;right<n;right++){
+        for (int right = 0; right < n; right++) {
 
             mp[s[right]]--;
 
-            if(mp[s[right]] == 0){
+            if (mp[s[right]] == 0) {
                 mp.erase(s[right]);
             }
 
-            if(right - left + 1 == k){
+            if (right - left + 1 == k) {
 
-                if(mp.empty()){
+                if (mp.empty()) {
                     res.push_back(left);
                 }
 
                 mp[s[left]]++;
 
-               if(mp[s[left]] == 0) {
+                if (mp[s[left]] == 0) {
                     mp.erase(s[left]);
                 }
 
@@ -38,7 +38,6 @@ public:
             }
         }
 
-    return res;    
-
+        return res;
     }
 };
